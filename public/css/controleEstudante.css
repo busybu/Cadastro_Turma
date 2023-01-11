@@ -66,8 +66,8 @@ header {
     display: block;
     font-family: 'Prompt', sans-serif;
     width: 300;
-    border-radius: 50%;
     color: black;
+    
     margin: auto;
     border: 1px;
 }
@@ -76,7 +76,6 @@ header {
     display: block;
     font-family: 'Prompt', sans-serif;
     width: 300;
-    border-radius: 50%;
     color: black;
 }
 .sala-opcoes{
@@ -91,10 +90,10 @@ header {
     width: 2.5rem;
 }
 
-.cadastrar-header li a:hover {
+.cadastrar-header li:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: 0.5s;
-    
+    border-radius: 0;
 }
 
 .cadastrar-header li ul {
