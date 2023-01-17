@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/controleEstudante.css">
-    <link rel="stylesheet" href="css/cadastrar.css">
+    <link rel="stylesheet" href="../css/controleEstudante.css">
+    <link rel="stylesheet" href="../css/cadastrar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Bosch-Zünder | Cadastrar Sala</title>
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <title>Bosch-Zünder | Cadastrar Aluno</title>
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
 </head>
 
 <body>
     <header>
-        <div class="img-header"><img src="img/header_Bosch.jfif" alt=""></div>
+        <div class="img-header"><img src="../img/header_Bosch.jfif" alt=""></div>
         <div class="box-header">
             <div class="title-header">
                 <a href="/">
@@ -46,27 +46,43 @@
         </div>
 
     </header>
-
-    <form action="/cadastrei" method="post">
+    <form action="/cadastreiAluno" method="post" enctype="multipart/form-data">
         <div class="form-area">
             <div class="form-cadastro">
                 <div class="title-cadastro">
-                    <h1>Cadastrar uma nova sala</h1>
+                    <h1>Editar aluno:</h1>
                 </div>
+                <div class="text-center">
+                    <img src="../img/<%= alunos.Foto %>" alt="Selecione uma imagem" id="imgFoto">
+                </div>
+                <input type="file" id="flImage" name="foto" accept="image/*" style="display: none;">
+
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="nome" placeholder="Nome da Sala">
-                    <label for="nomeSala">Nome</label>
+                    <input type="text" value="<%= alunos.Nome %>" class="form-control" name="nome">
+                    <label for="nomeAluno">Nome</label>
                 </div>
                 <div class="form-floating">
-                    <input type="number" class="form-control" name="capacidade" placeholder="Capacidade da Sala">
-                    <label for="capacidadeSala">Capacidade</label>
+                    <input type="text" value="<%= alunos.Idade %>" class="form-control" name="idade">
+                    <label for="idadeAluno">Idade</label>
                 </div>
-                <input href="#" class="btn btn-dark" type="submit"></input>
+                <div class="form-floating">
+                    <input type="text" value="<%= alunos.Sexo %>" class="form-control" name="sexo">
+                    <label for="sexoAluno">Sexo</label>
+                </div>
+                <select class="form-select" aria-label="Default select example" id="sala" name="sala"
+                    style="width: 85%;" required>
+                    <% for (let i=0; i<salas.length; i++) { %>
+                        <option value='<%= salas[i].IDSala %>'>
+                            <%= salas[i].Nome %>
+                        </option>
+                        <% } %>
+                </select>
+                <input class="btn btn-primary" type="submit" value="Atualizar"/>
             </div>
         </div>
     </form>
 
-
+    <script src="../js/cadastroAluno.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>

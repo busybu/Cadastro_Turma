@@ -1,5 +1,8 @@
 const express = require('express');
 const routes = require('./routes');
+
+const db = require('./src/config/db')
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 // Static files

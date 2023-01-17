@@ -37,7 +37,8 @@
                 <ul class="cadastrar-header" style="margin-top: 0; margin-bottom: 0; padding-left: 0;">
 
                     <li style="border-radius: 30%;">
-                        <a href=""><img src="https://cdn-icons-png.flaticon.com/512/7538/7538677.png"alt="Cadastro-Img"></a>
+                        <a href=""><img src="https://cdn-icons-png.flaticon.com/512/7538/7538677.png"
+                                alt="Cadastro-Img"></a>
                         <ul style="padding-left: 0;">
                             <li>Cadastrar</li>
                             <li><a href="alunos">Alunos</a></li>
@@ -49,12 +50,13 @@
         </div>
 
     </header>
-    <form action="" class="sala-opcoes">
+    <form action="/" method="post" class="sala-opcoes">
         <label for="">Salas de Aula:</label>
-        <select name="Sala" id="">
-            <option value="TI">TI</option>
-            <option value="Mecatronica">Mecatrônica</option>
-            <option value="Mecânica">Mecânica</option>
+        <select id="sala" onchange="this.form.submit()" name="nome">
+            <option value=''>Selecione uma sala</option>
+            <% for (let i=0; i< salas.length; i++) { %>
+              <option value='<%= salas[i].IDSala %>' <%= id == salas[i].IDSala ? 'selected' : ''%>> <%= salas[i].Nome %> </option>
+            <% } %>
         </select>
     </form>
     <div class="area-alunos">
@@ -62,54 +64,27 @@
             <h1>Alunos</h1>
         </div>
         <div class="content-alunos">
+
+            <% for (let i=0; i<alunos.length; i++) { %>
+
             <div class="card text-center mb-3" style="width: 18rem;">
                 <div class="card-body">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="icon">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Informations</p>
-                    <a href="#" class="btn btn-dark">Editar</a>
+                    <div class="text-center">
+                        <img src="../img/<%= alunos[i].Foto %>" alt="Foto aluno">
+                    </div>
+                    <h5 class="card-title">
+                        <%= alunos[i].Nome %>
+                    </h5>
+                    <p class="card-text">Idade: <%= alunos[i].Idade %>
+                    </p>
+                    <form action="/editarAluno/<%= alunos[i].IDAluno %>" method="get">
+                        <button type="submit" class="btn btn-secondary">Editar</button>
+                    </form>
                 </div>
             </div>
-            <div class="card text-center mb-3" style="width: 18rem;">
-                <div class="card-body">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="icon">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Informations</p>
-                    <a href="#" class="btn btn-dark">Editar</a>
-                </div>
-            </div>
-            <div class="card text-center mb-3" style="width: 18rem;">
-                <div class="card-body">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="icon">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Informations</p>
-                    <a href="#" class="btn btn-dark grey">Editar</a>
-                </div>
-            </div>
-            <div class="card text-center mb-3" style="width: 18rem;">
-                <div class="card-body">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="icon">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Informations</p>
-                    <a href="#" class="btn btn-dark grey">Editar</a>
-                </div>
-            </div>
-            <div class="card text-center mb-3" style="width: 18rem;">
-                <div class="card-body">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="icon">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Informations</p>
-                    <a href="#" class="btn btn-dark grey">Editar</a>
-                </div>
-            </div>
-            <div class="card text-center mb-3" style="width: 18rem;">
-                <div class="card-body">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="icon">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Informations</p>
-                    <a href="#" class="btn btn-dark grey">Editar</a>
-                </div>
-            </div>
+
+            <% } %>
+
         </div>
 
     </div>
