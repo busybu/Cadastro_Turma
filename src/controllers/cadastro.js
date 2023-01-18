@@ -22,7 +22,7 @@ module.exports = {
         // Criando sala no banco de dados
         await sala.create({
             Nome: dados.nome,
-            Capacidade: dados.capacidade
+            Capacidade: dados.capacidade.replace(" ", "")
         });
         // Redirecionar para a página principal
         res.redirect('/');

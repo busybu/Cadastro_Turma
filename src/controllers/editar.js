@@ -22,7 +22,6 @@ module.exports = {
         res.render('../views/editarAlunos', {salas, alunos});
 
     },
-
     async adicionar(req, res){
 
         const dados = req.body;
@@ -63,5 +62,30 @@ module.exports = {
 
         res.redirect('/');
         
+    },
+    async salas(req,res){
+        const parametro = req.params.id
+
+        const salas = await sala.findByPk(parametro,{
+            raw: true,
+            attributes: ['IDSala', 'Nome', 'Capacidade']
+        })
+
+        console.log(salas)
+        res.render('../views/editarSalas', {salas})
+    },
+    async atualizarSala(req, res){
+        const dados = req.body
+        const id = req.params.id
+        
+        await sala.update({
+            Nome: dados.nome,
+            Capacidade: dados.capacidade.replace(" ", "")
+        },
+        {
+            where: {IDSala: id}
+        }
+        )
+        res.redirect('/')
     }
 }

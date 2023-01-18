@@ -50,40 +50,54 @@
         </div>
 
     </header>
-    <form action="/" method="post" class="sala-opcoes">
-        <label for="">Salas de Aula:</label>
-        <select id="sala" onchange="this.form.submit()" name="nome">
-            <option value=''>Selecione uma sala</option>
-            <% for (let i=0; i< salas.length; i++) { %>
-              <option value='<%= salas[i].IDSala %>' <%= id == salas[i].IDSala ? 'selected' : ''%>> <%= salas[i].Nome %> </option>
-            <% } %>
-        </select>
-    </form>
-    <div class="area-alunos">
-        <div class="title-alunos">
-            <h1>Alunos</h1>
+    <div class="sala-alunos">
+        <div class="sala-select">
+            <% if(id !='' ) {%>
+                <h1 style="margin-left:1rem;">
+                    <%= salaSelecionada.Nome %>
+                </h1>
+                <a href="/editarSala/<%= id %>" style="margin: auto; margin-left: 1rem;">
+                        <button type="button" class="btn btn-secondary" style="margin-left: 0.5rem;">Editar</button>
+                </a>
+                <% } %>
         </div>
+        <form action="/" method="post" class="sala-opcoes">
+            <label for="">Salas de Aula:</label>
+            <select id="sala" onchange="this.form.submit()" name="nome">
+                <option value=''>Selecione uma sala</option>
+                <% for (let i=0; i< salas.length; i++) { %>
+                    <option value='<%= salas[i].IDSala %>' <%=id==salas[i].IDSala ? 'selected' : '' %>> <%=
+                            salas[i].Nome %>
+                    </option>
+                    <% } %>
+            </select>
+        </form>
+    </div>
+
+    <div class="area-alunos">
+
         <div class="content-alunos">
 
             <% for (let i=0; i<alunos.length; i++) { %>
 
-            <div class="card text-center mb-3" style="width: 18rem;">
-                <div class="card-body">
-                    <div class="text-center">
-                        <img src="../img/<%= alunos[i].Foto %>" alt="Foto aluno">
-                    </div>
-                    <h5 class="card-title">
-                        <%= alunos[i].Nome %>
-                    </h5>
-                    <p class="card-text">Idade: <%= alunos[i].Idade %>
-                    </p>
-                    <form action="/editarAluno/<%= alunos[i].IDAluno %>" method="get">
-                        <button type="submit" class="btn btn-secondary">Editar</button>
-                    </form>
-                </div>
-            </div>
+                <div class="card text-center mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="../img/<%= alunos[i].Foto %>" alt="Foto aluno">
+                        </div>
 
-            <% } %>
+                        <h5 class="card-title">
+                            <%= alunos[i].Nome %>
+                        </h5>
+                        <p class="card-text">Idade: <%= alunos[i].Idade %>
+                        </p>
+                        <form action="/editarAluno/<%= alunos[i].IDAluno %>" method="get">
+                            <button type="submit" class="btn btn-secondary">Editar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <% } %>
 
         </div>
 
